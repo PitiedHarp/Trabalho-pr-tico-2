@@ -68,9 +68,9 @@ function fetchConteudoSugerido() {
 function fetchColegasTrabalho() {
     // Simulação de dados para exemplo
     const colegas = [
-        { nome: 'Colega 1', foto: './public/assets/img/colega1.jpg' },
-        { nome: 'Colega 2', foto: './public/assets/img/colega2.jpg' },
-        { nome: 'Colega 3', foto: './public/assets/img/colega3.jpg' }
+        { nome: 'Colega 1', foto: './public/assets/img/download.jpg' },
+        { nome: 'Colega 2', foto: './public/assets/img/F90fMJdWEAA8NTV.jpg' },
+        { nome: 'Colega 3', foto: './public/assets/img/EN.jpg' }
     ];
 
     const colegasGrid = document.querySelector('.colegas-grid');
