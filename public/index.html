@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Site</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Your Name</h1>
+        <nav>
+            <ul>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#repositories">Repositories</a></li>
+                <li><a href="#content">Content</a></li>
+                <li><a href="#colleagues">Colleagues</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="profile">
+        <h2>Profile</h2>
+        <div id="profile-info"></div>
+    </section>
+    <section id="repositories">
+        <h2>Repositories</h2>
+        <div id="repo-cards" class="card-deck"></div>
+    </section>
+    <section id="content">
+        <h2>Content</h2>
+        <div id="content-carousel" class="carousel slide" data-ride="carousel">
+            <!-- Carousel items will be injected here -->
+        </div>
+    </section>
+    <section id="colleagues">
+        <h2>Colleagues</h2>
+        <div id="colleague-grid" class="row"></div>
+    </section>
+    <footer>
+        <p>Site by Your Name</p>
+    </footer>
+    <script src="assets/scripts/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
