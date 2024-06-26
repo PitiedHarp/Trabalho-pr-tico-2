@@ -1,93 +1,104 @@
 // app.js
-
 document.addEventListener('DOMContentLoaded', function() {
-    fetchPerfilUsuario();
-    fetchRepositorios();
-    fetchConteudoSugerido();
-    fetchColegasTrabalho();
+    fetchGitHubData();
+    fetchJSONServerData();
 });
 
-function fetchPerfilUsuario() {
-    fetch('https://api.github.com/users/PitiedHarp')
+// Função para buscar dados do GitHub e preencher a seção de Perfil e Repositórios
+function fetchGitHubData() {
+    const username = 'seu_username'; // Substitua pelo seu nome de usuário do GitHub
+
+    // Endpoint para informações do usuário
+    fetch(`https://api.github.com/users/${PitiedHarp}`)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('avatar').src = data.avatar_url;
-            document.getElementById('nome').textContent = data.name.split(' ')[0];
-            document.getElementById('sobrenome').textContent = data.name.split(' ')[1];
-            document.getElementById('descricao').textContent = data.bio;
+            const { avatar_url, name, bio, html_url } = data;
+
+            // Preenche informações do perfil
+            document.getElementById('avatar').src = avatar_url;
+            document.getElementById('nome').textContent = name;
+            document.getElementById('descricao').textContent = bio;
+            document.getElementById('linkedin').href = html_url;
         })
-        .catch(error => console.error('Erro ao buscar perfil do usuário:', error));
+        .catch(error => console.error('Erro ao buscar dados do GitHub:', error));
+
+    // Endpoint para listar repositórios públicos do usuário
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`)
+        .then(response => response.json())
+        .then(data => {
+            const repositoriosLista = document.querySelector('.repositorios-lista');
+
+            // Limpa a lista de repositórios
+            repositoriosLista.innerHTML = '';
+
+            // Preenche os cards de repositórios
+            data.forEach(repo => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <h3>${repo.name}</h3>
+                    <p>${repo.description}</p>
+                    <p>Linguagem: ${repo.language}</p>
+                    <p>Estrelas: ${repo.stargazers_count}</p>
+                    <p>Forks: ${repo.forks_count}</p>
+                    <a href="${repo.html_url}" target="_blank">Ver Repositório</a>
+                `;
+                repositoriosLista.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Erro ao buscar repositórios do GitHub:', error));
 }
 
-function fetchRepositorios() {
-    // Simulação de dados para exemplo
-    const repositorios = [
-        { nome: 'Repositorio 1', descricao: 'Hydroid' },
-        { nome: 'Repositorio 2', descricao: 'Sevagoth' },
-        { nome: 'Repositorio 3', descricao: 'Warframe grávido' }
-    ];
+// Função para buscar dados do JSON Server e preencher a seção de Conteúdo Sugerido e Colegas de Trabalho
+function fetchJSONServerData() {
+    // Endpoint para informações de conteúdo sugerido
+    fetch('http://localhost:3000/suggested_content')
+        .then(response => response.json())
+        .then(data => {
+            const carouselInner = document.querySelector('.carousel-inner');
 
-    const repositoriosLista = document.querySelector('.repositorios-lista');
+            // Limpa o carrossel
+            carouselInner.innerHTML = '';
 
-    repositorios.forEach(repo => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-            <h3>${repo.nome}</h3>
-            <p>${repo.descricao}</p>
-            <a href="#">Ver Detalhes</a>
-        `;
-        repositoriosLista.appendChild(card);
-    });
+            // Preenche os itens do carrossel
+            data.forEach((item, index) => {
+                const carouselItem = document.createElement('div');
+                carouselItem.classList.add('carousel-item');
+                if (index === 0) {
+                    carouselItem.classList.add('active');
+                }
+                carouselItem.innerHTML = `
+                    <img src="${item.image}" class="d-block w-100" alt="${item.title}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>${item.title}</h5>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                carouselInner.appendChild(carouselItem);
+            });
+        })
+        .catch(error => console.error('Erro ao buscar conteúdo sugerido:', error));
+
+    // Endpoint para informações de colegas de trabalho
+    fetch('http://localhost:3000/work_colleagues')
+        .then(response => response.json())
+        .then(data => {
+            const colegasGrid = document.querySelector('.colegas-grid');
+
+            // Limpa a grade de colegas
+            colegasGrid.innerHTML = '';
+
+            // Preenche a grade de colegas
+            data.forEach(colega => {
+                const colegaCard = document.createElement('div');
+                colegaCard.classList.add('colega');
+                colegaCard.innerHTML = `
+                    <img src="${colega.avatar}" alt="${colega.name}">
+                    <p>${colega.name}</p>
+                    <p>${colega.position}</p>
+                `;
+                colegasGrid.appendChild(colegaCard);
+            });
+        })
+        .catch(error => console.error('Erro ao buscar colegas de trabalho:', error));
 }
-
-function fetchConteudoSugerido() {
-    // Simulação de dados para exemplo
-    const conteudos = [
-        { titulo: 'Artigo 1', imagem: './public/assets/img/165703330.jpg' },
-        { titulo: 'Vídeo 1', imagem: './public/assets/img/Pichau.jpg' },
-        { titulo: 'Infográfico 1', imagem: './public/assets/img/WP3.jpg' }
-    ];
-
-    const carouselInner = document.querySelector('.carousel-inner');
-
-    conteudos.forEach((conteudo, index) => {
-        const activeClass = index === 0 ? 'active' : '';
-        const item = document.createElement('div');
-        item.classList.add('carousel-item', activeClass);
-        item.innerHTML = `
-            <img src="${conteudo.imagem}" class="d-block w-100" alt="${conteudo.titulo}">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>${conteudo.titulo}</h5>
-            </div>
-        `;
-        carouselInner.appendChild(item);
-    });
-}
-
-function fetchColegasTrabalho() {
-    // Simulação de dados para exemplo
-    const colegas = [
-        { nome: 'Colega 1', foto: './public/assets/img/download.jpg' },
-        { nome: 'Colega 2', foto: './public/assets/img/F90fMJdWEAA8NTV.jpg' },
-        { nome: 'Colega 3', foto: './public/assets/img/EN.jpg' }
-    ];
-
-    const colegasGrid = document.querySelector('.colegas-grid');
-
-    colegas.forEach(colega => {
-        const card = document.createElement('div');
-        card.classList.add('colega-card');
-        card.innerHTML = `
-            <img src="${colega.foto}" alt="${colega.nome}">
-            <p>${colega.nome}</p>
-        `;
-        colegasGrid.appendChild(card);
-    });
-}
-
-                </div>
-            `).join('');
-            document.getElementById('colleague-grid').innerHTML = colleagueGrid;
-        });
-});
