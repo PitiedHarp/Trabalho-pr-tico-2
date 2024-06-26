@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchPerfilUsuario() {
-    fetch('https://api.github.com/users/seu-usuario')
+    fetch('https://api.github.com/users/PitiedHarp')
         .then(response => response.json())
         .then(data => {
             document.getElementById('avatar').src = data.avatar_url;
@@ -22,9 +22,9 @@ function fetchPerfilUsuario() {
 function fetchRepositorios() {
     // Simulação de dados para exemplo
     const repositorios = [
-        { nome: 'Repo 1', descricao: 'Descrição do Repo 1' },
-        { nome: 'Repo 2', descricao: 'Descrição do Repo 2' },
-        { nome: 'Repo 3', descricao: 'Descrição do Repo 3' }
+        { nome: 'Repositorio 1', descricao: 'Hydroid' },
+        { nome: 'Repositorio 2', descricao: 'Sevagoth' },
+        { nome: 'Repositorio 3', descricao: 'Warframe grávido' }
     ];
 
     const repositoriosLista = document.querySelector('.repositorios-lista');
@@ -44,9 +44,9 @@ function fetchRepositorios() {
 function fetchConteudoSugerido() {
     // Simulação de dados para exemplo
     const conteudos = [
-        { titulo: 'Artigo 1', imagem: './public/assets/img/img1.jpg' },
-        { titulo: 'Vídeo 1', imagem: './public/assets/img/img2.jpg' },
-        { titulo: 'Infográfico 1', imagem: './public/assets/img/img3.jpg' }
+        { titulo: 'Artigo 1', imagem: './public/assets/img/165703330.jpg' },
+        { titulo: 'Vídeo 1', imagem: './public/assets/img/Pichau.jpg' },
+        { titulo: 'Infográfico 1', imagem: './public/assets/img/WP3.jpg' }
     ];
 
     const carouselInner = document.querySelector('.carousel-inner');
