@@ -1,48 +1,96 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Site</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Meu Site Pessoal</title>
+    <link rel="stylesheet" href="./public/assets/css/styles.css">
 </head>
 <body>
+    <!-- Cabeçalho -->
     <header>
-        <h1>Luiz Gustavo</h1>
-        <nav>
-            <ul>
-                <li><a href="#profile">Perfil</a></li>
-                <li><a href="#repositories">Repositório</a></li>
-                <li><a href="#content">Conteúdo</a></li>
-                <li><a href="#colleagues">Colegas</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Seu Nome</h1>
+            <nav>
+                <ul>
+                    <li><a href="#perfil">Perfil</a></li>
+                    <li><a href="#repositorios">Repositórios</a></li>
+                    <li><a href="#conteudo">Conteúdo Sugerido</a></li>
+                    <li><a href="#colegas">Colegas de Trabalho</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <section id="profile">
-        <h2>Perfil</h2>
-        <div id="profile-info"></div>
-    </section>
-    <section id="repositories">
-        <h2>Repositório</h2>
-        <div id="repo-cards" class="card-deck"></div>
-    </section>
-    <section id="content">
-        <h2>Conteúdo</h2>
-        <div id="content-carousel" class="carousel slide" data-ride="carousel">
-            <!-- Carousel items will be injected here -->
+
+    <!-- Seção 1: Perfil do Usuário -->
+    <section id="perfil">
+        <div class="container">
+            <div class="perfil-info">
+                <div class="perfil-avatar">
+                    <img src="./public/assets/img/avatar-placeholder.png" alt="Foto do Perfil">
+                </div>
+                <div class="perfil-texto">
+                    <h2>Nome Sobrenome</h2>
+                    <p>Descrição do perfil</p>
+                    <div class="perfil-contatos">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">GitHub</a>
+                        <!-- Adicione outros botões conforme necessário -->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <section id="colleagues">
-        <h2>Colegas</h2>
-        <div id="colleague-grid" class="row"></div>
+
+    <!-- Seção 2: Repositórios -->
+    <section id="repositorios">
+        <div class="container">
+            <h2>Meus Repositórios</h2>
+            <div class="repositorios-lista">
+                <!-- Cards dos Repositórios serão preenchidos dinamicamente -->
+            </div>
+        </div>
     </section>
+
+    <!-- Seção 3: Conteúdo Sugerido -->
+    <section id="conteudo">
+        <div class="container">
+            <h2>Conteúdo Sugerido</h2>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Itens do Carrossel serão preenchidos dinamicamente -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Colegas de Trabalho -->
+    <section id="colegas">
+        <div class="container">
+            <h2>Colegas de Trabalho</h2>
+            <div class="colegas-grid">
+                <!-- Grade de Colegas será preenchida dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
     <footer>
-        <p>Site do Luiz</p>
+        <div class="container">
+            <p>Desenvolvido por Você - Ano</p>
+        </div>
     </footer>
-    <script src="assets/scripts/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="./public/assets/scripts/app.js"></script>
 </body>
 </html>
