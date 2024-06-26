@@ -1,74 +1,91 @@
+// app.js
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch and display profile info from GitHub
-    fetch('https://api.github.com/users/YOUR_GITHUB_USERNAME')
+    fetchPerfilUsuario();
+    fetchRepositorios();
+    fetchConteudoSugerido();
+    fetchColegasTrabalho();
+});
+
+function fetchPerfilUsuario() {
+    fetch('https://api.github.com/users/seu-usuario')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('profile-info').innerHTML = `
-                <img src="${data.avatar_url}" alt="Profile Picture">
-                <h3>${data.name}</h3>
-                <p>${data.bio}</p>
-                <a href="mailto:${data.email}">Email</a>
-                <a href="${data.blog}">Blog</a>
-            `;
-        });
+            document.getElementById('avatar').src = data.avatar_url;
+            document.getElementById('nome').textContent = data.name.split(' ')[0];
+            document.getElementById('sobrenome').textContent = data.name.split(' ')[1];
+            document.getElementById('descricao').textContent = data.bio;
+        })
+        .catch(error => console.error('Erro ao buscar perfil do usuário:', error));
+}
 
-    // Fetch and display repositories from GitHub
-    fetch('https://api.github.com/users/YOUR_GITHUB_USERNAME/repos')
-        .then(response => response.json())
-        .then(repos => {
-            let repoCards = repos.map(repo => `
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${repo.name}</h5>
-                        <p class="card-text">${repo.description}</p>
-                        <a href="${repo.html_url}" class="btn btn-primary">Go to Repository</a>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('repo-cards').innerHTML = repoCards;
-        });
+function fetchRepositorios() {
+    // Simulação de dados para exemplo
+    const repositorios = [
+        { nome: 'Repo 1', descricao: 'Descrição do Repo 1' },
+        { nome: 'Repo 2', descricao: 'Descrição do Repo 2' },
+        { nome: 'Repo 3', descricao: 'Descrição do Repo 3' }
+    ];
 
-    // Fetch and display content from JSONServer
-    fetch('http://localhost:3000/albums')
-        .then(response => response.json())
-        .then(albums => {
-            let carouselItems = albums.map((album, index) => `
-                <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                    <img src="${album.coverUrl}" class="d-block w-100" alt="${album.title}">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>${album.title}</h5>
-                        <p>${album.description}</p>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('content-carousel').innerHTML = `
-                <div class="carousel-inner">
-                    ${carouselItems}
-                </div>
-                <a class="carousel-control-prev" href="#content-carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#content-carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            `;
-        });
+    const repositoriosLista = document.querySelector('.repositorios-lista');
 
-    // Fetch and display colleagues from JSONServer
-    fetch('http://localhost:3000/colleagues')
-        .then(response => response.json())
-        .then(colleagues => {
-            let colleagueGrid = colleagues.map(colleague => `
-                <div class="col-4">
-                    <div class="card">
-                        <img src="${colleague.photoUrl}" class="card-img-top" alt="${colleague.name}">
-                        <div class="card-body">
-                            <h5 class="card-title">${colleague.name}</h5>
-                            <a href="${colleague.githubProfileUrl}" class="btn btn-primary">GitHub Profile</a>
-                        </div>
-                    </div>
+    repositorios.forEach(repo => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <h3>${repo.nome}</h3>
+            <p>${repo.descricao}</p>
+            <a href="#">Ver Detalhes</a>
+        `;
+        repositoriosLista.appendChild(card);
+    });
+}
+
+function fetchConteudoSugerido() {
+    // Simulação de dados para exemplo
+    const conteudos = [
+        { titulo: 'Artigo 1', imagem: './public/assets/img/img1.jpg' },
+        { titulo: 'Vídeo 1', imagem: './public/assets/img/img2.jpg' },
+        { titulo: 'Infográfico 1', imagem: './public/assets/img/img3.jpg' }
+    ];
+
+    const carouselInner = document.querySelector('.carousel-inner');
+
+    conteudos.forEach((conteudo, index) => {
+        const activeClass = index === 0 ? 'active' : '';
+        const item = document.createElement('div');
+        item.classList.add('carousel-item', activeClass);
+        item.innerHTML = `
+            <img src="${conteudo.imagem}" class="d-block w-100" alt="${conteudo.titulo}">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>${conteudo.titulo}</h5>
+            </div>
+        `;
+        carouselInner.appendChild(item);
+    });
+}
+
+function fetchColegasTrabalho() {
+    // Simulação de dados para exemplo
+    const colegas = [
+        { nome: 'Colega 1', foto: './public/assets/img/colega1.jpg' },
+        { nome: 'Colega 2', foto: './public/assets/img/colega2.jpg' },
+        { nome: 'Colega 3', foto: './public/assets/img/colega3.jpg' }
+    ];
+
+    const colegasGrid = document.querySelector('.colegas-grid');
+
+    colegas.forEach(colega => {
+        const card = document.createElement('div');
+        card.classList.add('colega-card');
+        card.innerHTML = `
+            <img src="${colega.foto}" alt="${colega.nome}">
+            <p>${colega.nome}</p>
+        `;
+        colegasGrid.appendChild(card);
+    });
+}
+
                 </div>
             `).join('');
             document.getElementById('colleague-grid').innerHTML = colleagueGrid;
