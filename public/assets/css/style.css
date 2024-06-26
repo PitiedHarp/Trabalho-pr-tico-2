@@ -1,148 +1,120 @@
-/* styles.css */
-
-/* Estilos Gerais */
+/* style.css */
+/* Estilos globais */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f8f9fa;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    padding-top: 70px; /* Para ajustar o conteúdo abaixo do cabeçalho fixo */
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
 }
 
-h1, h2, h3 {
-    margin-bottom: 10px;
-}
-
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Cabeçalho */
 header {
     background-color: #343a40;
-    color: #ffffff;
+    color: #fff;
     padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 header h1 {
-    font-size: 2rem;
     margin: 0;
+    font-size: 24px;
     text-align: center;
 }
 
-nav ul {
+header nav ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
 }
 
-nav ul li {
+header nav ul li {
     display: inline;
     margin: 0 10px;
 }
 
-nav ul li a {
-    color: #ffffff;
-    font-weight: bold;
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
 }
 
-/* Perfil do Usuário */
-.perfil-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+header nav ul li a:hover {
+    color: #ccc;
 }
 
-.perfil-avatar {
-    margin-right: 20px;
+section {
+    margin-bottom: 40px;
 }
 
-.perfil-avatar img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-.perfil-texto {
-    flex-grow: 1;
-}
-
-.perfil-contatos a {
-    display: inline-block;
-    margin-right: 10px;
-    margin-top: 10px;
-}
-
-/* Repositórios */
-.repositorios-lista {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .card {
-    background-color: #ffffff;
-    padding: 10px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
+    margin-top: 0;
+}
+
+.card p {
     margin-bottom: 10px;
-}
-
-/* Conteúdo Sugerido */
-.carousel-inner {
-    display: flex;
-}
-
-.carousel-item {
-    text-align: center;
 }
 
 .carousel-item img {
-    max-width: 100%;
-    height: auto;
+    border-radius: 5px;
 }
 
-/* Colegas de Trabalho */
 .colegas-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
-.colega-card {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.colega {
     text-align: center;
 }
 
-.colega-card img {
-    width: 100px;
-    height: 100px;
+.colega img {
+    max-width: 100%;
     border-radius: 50%;
-    margin-bottom: 10px;
 }
 
-/* Rodapé */
 footer {
-    background-color: #343a40;
-    color: #ffffff;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
+    background-color: #343a40;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header nav ul li a {
+        font-size: 16px;
+    }
 }
