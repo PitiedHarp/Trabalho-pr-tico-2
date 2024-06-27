@@ -2,27 +2,39 @@
   "imagens": [
     {
       "id": 1,
-      "url": "/assets/img/EN.jpg"
+      "url": "/public/assets/img/skibidi.jpeg",
+      "titulo": "Parrhesia",
+      "descricao": "A coragem de dizer a verdade",
+      "link": "https://pt.wikipedia.org/wiki/Parrésia"
     },
     {
       "id": 2,
-      "url": "/assets/img/skibidi.jpeg"
+      "url": "/public/assets/img/Hydroid.jpg",
+      "titulo": "Strongest Battlegrounds",
+      "descricao": "Hihiheha",
+      "link": "https://youtu.be/D4ZQp3tVqnU?si=vaO1MA6ERdEWwz_6"
+    }
+    // Adicione mais imagens conforme necessário
+  ],
+  "colegas": [
+    {
+      "id": 1,
+      "nome": "PitiedHarp",
+      "fotoUrl": "/public/assets/img/Limbo.jpeg",
+      "githubUrl": "https://github.com/PitiedHarp"
+    },
+    {
+      "id": 2,
+      "nome": "Pit2",
+      "fotoUrl": "/public/assets/img/WP3.png",
+      "githubUrl": "https://github.com/PitiedHarp"
     },
     {
       "id": 3,
-      "url": "/assets/img/Hydroid.jpg"
-    },
-    {
-      "id": 4,
-      "url": "/assets/img/Limbo.jpeg"
-    },
-    {
-      "id": 5,
-      "url": "/assets/img/WP3.png"
-    },
-    {
-      "id": 6,
-      "url": "/assets/img/Mahoraga.jpeg"
+      "nome": "Pit3",
+      "fotoUrl": "/public/assets/img/Mahoraga.jpeg",
+      "githubUrl": "https://github.com/PitiedHarp"
     }
+    // Adicione mais colegas conforme necessário
   ]
 }
