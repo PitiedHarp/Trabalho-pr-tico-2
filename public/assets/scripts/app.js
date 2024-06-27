@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Função para buscar dados do GitHub e preencher a seção de Perfil e Repositórios
 function fetchGitHubData() {
-    const username = 'seu_username'; // Substitua pelo seu nome de usuário do GitHub
+    const username = 'PitiedHarp'; // Substitua pelo seu nome de usuário do GitHub
 
     // Endpoint para informações do usuário
     fetch(`https://api.github.com/users/${PitiedHarp}`)
