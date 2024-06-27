@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Repositório</title>
+    <link rel="stylesheet" href="./public/assets/css/styles.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <h1>Detalhes do Repositório</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Voltar para o Início</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Detalhes do Repositório -->
+    <section id="detalhes-repo">
+        <div class="container">
+            <div class="repo-info">
+                <div class="repo-avatar">
+                    <img src="" alt="Avatar do Proprietário">
+                </div>
+                <div class="repo-texto">
+                    <h2>Nome do Repositório</h2>
+                    <p>Descrição do Repositório</p>
+                    <ul>
+                        <li><strong>Data de Criação:</strong> <span id="data-criacao"></span></li>
+                        <li><strong>Proprietário:</strong> <span id="proprietario"></span></li>
+                        <li><strong>Linguagem Principal:</strong> <span id="linguagem"></span></li>
+                        <li><strong>Estrelas:</strong> <span id="estrelas"></span></li>
+                        <li><strong>Observadores:</strong> <span id="observadores"></span></li>
+                        <li><strong>Forks:</strong> <span id="forks"></span></li>
+                        <li><strong>Licença:</strong> <span id="licenca"></span></li>
+                    </ul>
+                    <a id="link-repo" href="#" target="_blank" class="btn btn-primary">Acessar Repositório</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./public/assets/scripts/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            carregarDetalhesRepo();
+        });
+
+        function carregarDetalhesRepo() {
+            // Obter o ID do repositório da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const repoId = urlParams.get('id');
+
+            // Simulação de dados do repositório (substitua por uma requisição à API do GitHub)
+            const repo = {
+                nome: 'Nome do Repositório',
+                descricao: 'Descrição do Repositório',
+                dataCriacao: '01/01/2022',
+                proprietario: 'Proprietário do Repositório',
+                avatarProprietario: './public/assets/img/avatar.jpg',
+                linguagem: 'JavaScript',
+                estrelas: 10,
+                observadores: 5,
+                forks: 3,
+                licenca: 'MIT',
+                url: 'https://github.com/seu_usuario/repo'
+            };
+
+            // Atualiza o HTML com os dados obtidos
+            document.title = `Detalhes do Repositório - ${repo.nome}`;
+            document.querySelector('.repo-avatar img').src = repo.avatarProprietario;
+            document.querySelector('.repo-texto h2').textContent = repo.nome;
+            document.querySelector('.repo-texto p').textContent = repo.descricao;
+            document.getElementById('data-criacao').textContent = repo.dataCriacao;
+            document.getElementById('proprietario').textContent = repo.proprietario;
+            document.getElementById('linguagem').textContent = repo.linguagem;
+            document.getElementById('estrelas').textContent = repo.estrelas;
+            document.getElementById('observadores').textContent = repo.observadores;
+            document.getElementById('forks').textContent = repo.forks;
+            document.getElementById('licenca').textContent = repo.licenca;
+            document.getElementById('link-repo').href = repo.url;
+        }
+    </script>
+</body>
+</html>
