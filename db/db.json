@@ -1,40 +1,58 @@
 {
-  "imagens": [
+  "profile": {
+    "avatarUrl": "/public/assets/img/EN.jpg",
+    "nome": "Luiz Gustavo Ferreira Mattos",
+    "descricao": "2º melhor youtuber de For Honor",
+    "contatos": {
+      "linkedin": "https://github.com/PitiedHarp"
+    }
+  },
+  "repositorios": [
     {
-      "id": 1,
-      "url": "/public/assets/img/skibidi.jpeg",
+      "nome": "For Honor",
+      "descricao": "For Honor é um jogo de luta realista que se passa na era medieval",
+      "url": "https://github.com/PitiedHarp/For-Honor"
+    },
+    {
+      "nome": "Warframe",
+      "descricao": "É um jogo hack and slash multijogador e cooperativo",
+      "url": "https://github.com/PitiedHarp/Warframe"
+    },
+    {
+      "nome": "Rocket League",
+      "descricao": "É um jogo pvp de futebol de carros",
+      "url": "https://github.com/PitiedHarp/Rocket-League"
+    }
+  ],
+  "conteudoSugerido": [
+    {
       "titulo": "Parrhesia",
       "descricao": "A coragem de dizer a verdade",
+      "imagemUrl": "/public/assets/img/skibidi.jpeg",
       "link": "https://pt.wikipedia.org/wiki/Parrésia"
     },
     {
-      "id": 2,
-      "url": "/public/assets/img/Hydroid.jpg",
       "titulo": "Strongest Battlegrounds",
       "descricao": "Hihiheha",
+      "imagemUrl": "/public/assets/img/Hydroid.jpg",
       "link": "https://youtu.be/D4ZQp3tVqnU?si=vaO1MA6ERdEWwz_6"
     }
-    // Adicione mais imagens conforme necessário
   ],
   "colegas": [
     {
-      "id": 1,
       "nome": "PitiedHarp",
       "fotoUrl": "/public/assets/img/Limbo.jpeg",
       "githubUrl": "https://github.com/PitiedHarp"
     },
     {
-      "id": 2,
       "nome": "Pit2",
       "fotoUrl": "/public/assets/img/WP3.png",
       "githubUrl": "https://github.com/PitiedHarp"
     },
     {
-      "id": 3,
       "nome": "Pit3",
       "fotoUrl": "/public/assets/img/Mahoraga.jpeg",
       "githubUrl": "https://github.com/PitiedHarp"
     }
-    // Adicione mais colegas conforme necessário
   ]
 }
