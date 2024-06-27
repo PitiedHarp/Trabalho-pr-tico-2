@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,7 +28,7 @@
         <div class="container">
             <div class="perfil-info">
                 <div class="perfil-avatar">
-                    <img src="/public/assets/img/EN.jpg" alt="Foto do Perfil">
+                    <img src="./public/assets/img/EN.jpg" alt="Foto do Perfil">
                 </div>
                 <div class="perfil-texto">
                     <h2>Luiz Gustavo Ferreira Mattos</h2>
@@ -45,25 +46,8 @@
     <section id="repositorios">
         <div class="container">
             <h2>Meus Repositórios</h2>
-            <div class="repositorios-lista">
+            <div class="repositorios-lista" id="repositories-list">
                 <!-- Cards dos Repositórios serão preenchidos dinamicamente -->
-                <div class="card">
-                    <h3>For Honor</h3>
-                    <p>For Honor é um jogo de luta realista que se passa na era medieval</p>
-                    <a href="https://github.com/PitiedHarp/For-Honor">Ver Detalhes</a>
-                </div>
-                <!-- Exemplo com link para o repositório 1 -->
-                <div class="card">
-                    <h3>Warframe</h3>
-                    <p>É um jogo hack and slash multijogador e cooperativo</p>
-                    <a href="https://github.com/PitiedHarp/Warframe">Ver Detalhes</a>
-                </div>
-                <!-- Exemplo com link para o repositório 2 -->
-                <div class="card">
-                    <h3>Rocket League</h3>
-                    <p>É um jogo pvp de futebol de carros</p>
-                    <a href="https://github.com/PitiedHarp/Rocket-League">Ver Detalhes</a>
-                </div>
             </div>
         </div>
     </section>
@@ -73,25 +57,8 @@
         <div class="container">
             <h2>Conteúdo Sugerido</h2>
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="content-carousel">
                     <!-- Itens do Carrossel serão preenchidos dinamicamente -->
-                    <div class="carousel-item active">
-                        <img src="./public/assets/img/skibidi.jpeg" class="d-block w-100" alt="Imagem Conteúdo 1">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Parrhesia</h5>
-                            <p>A coragem de dizer a verdade</p>
-                            <a href="https://pt.wikipedia.org/wiki/Parrésia">Ir para o site</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./public/assets/img/Hydroid.jpg" class="d-block w-100" alt="Imagem Conteúdo 2">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Strongest Battlegrounds</h5>
-                            <p>Hihiheha</p>
-                            <a href="https://youtu.be/D4ZQp3tVqnU?si=vaO1MA6ERdEWwz_6">Ir para o site</a>
-                        </div>
-                    </div>
-                    <!-- Adicione mais itens conforme necessário -->
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -109,24 +76,8 @@
     <section id="colegas">
         <div class="container">
             <h2>Colegas de Trabalho</h2>
-            <div class="colegas-grid">
+            <div class="colegas-grid" id="colleagues-grid">
                 <!-- Grade de Colegas será preenchida dinamicamente -->
-                <div class="colega">
-                    <img src="./public/assets/img/Limbo.jpeg" alt="Foto Colega 1">
-                    <h3>PitiedHarp</h3>
-                    <a href="https://github.com/PitiedHarp">GitHub</a>
-                </div>
-                <div class="colega">
-                    <img src="./public/assets/img/WP3.png" alt="Foto Colega 2">
-                    <h3>Pit2</h3>
-                    <a href="https://github.com/PitiedHarp">GitHub</a>
-                </div>
-                <div class="colega">
-                    <img src="./public/assets/img/Mahoraga.jpeg" alt="Foto Colega 3">
-                    <h3>Pit3</h3>
-                    <a href="https://github.com/PitiedHarp">GitHub</a>
-                </div>
-                <!-- Adicione mais colegas conforme necessário -->
             </div>
         </div>
     </section>
@@ -138,54 +89,64 @@
         </div>
     </footer>
 
-    <!-- Script para buscar e exibir imagens do JSON Server -->
+    <script src="./public/assets/scripts/app.js"></script>
     <script>
-        // URL do JSON Server
-        const jsonServerUrl = 'http://localhost:3000';
-
-        // Função para buscar e exibir imagens
-        async function fetchAndDisplayImages() {
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const response = await fetch(`${jsonServerUrl}/imagens`);
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar imagens do JSON Server');
-                }
-                const imagens = await response.json();
-                const conteudoSugeridoCarousel = document.querySelector('#conteudo .carousel-inner');
+                // Fetch data from json-server
+                const response = await fetch('http://localhost:3000/repositories');
+                const repositories = await response.json();
 
-                imagens.forEach((imagem, index) => {
-                    const carouselItem = document.createElement('div');
-                    carouselItem.classList.add('carousel-item');
-                    if (index === 0) {
-                        carouselItem.classList.add('active');
-                    }
-
-                    const imgElement = document.createElement('img');
-                    imgElement.src = `${jsonServerUrl}${imagem.url}`;
-                    imgElement.classList.add('d-block', 'w-100');
-                    imgElement.alt = `Imagem Conteúdo ${index + 1}`;
-
-                    const carouselCaption = document.createElement('div');
-                    carouselCaption.classList.add('carousel-caption', 'd-none', 'd-md-block');
-                    carouselCaption.innerHTML = `
-                        <h5>${imagem.titulo}</h5>
-                        <p>${imagem.descricao}</p>
-                        <a href="${imagem.link}">Ir para o site</a>
+                // Populate repositories section
+                const repositoriesList = document.getElementById('repositories-list');
+                repositories.forEach(repo => {
+                    repositoriesList.innerHTML += `
+                        <div class="card">
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description}</p>
+                            <a href="${repo.link}">Ver Detalhes</a>
+                        </div>
                     `;
+                });
 
-                    carouselItem.appendChild(imgElement);
-                    carouselItem.appendChild(carouselCaption);
-                    conteudoSugeridoCarousel.appendChild(carouselItem);
+                // Fetch data for content carousel
+                const contentResponse = await fetch('http://localhost:3000/content');
+                const contentItems = await contentResponse.json();
+
+                // Populate content carousel
+                const contentCarousel = document.getElementById('content-carousel');
+                contentItems.forEach(item => {
+                    contentCarousel.innerHTML += `
+                        <div class="carousel-item">
+                            <img src="${item.image}" class="d-block w-100" alt="${item.alt}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>${item.caption}</h5>
+                                <p>${item.description}</p>
+                                <a href="${item.link}">Ir para o site</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Fetch data for colleagues grid
+                const colleaguesResponse = await fetch('http://localhost:3000/colleagues');
+                const colleagues = await colleaguesResponse.json();
+
+                // Populate colleagues grid
+                const colleaguesGrid = document.getElementById('colleagues-grid');
+                colleagues.forEach(colleague => {
+                    colleaguesGrid.innerHTML += `
+                        <div class="colega">
+                            <img src="${colleague.image}" alt="${colleague.alt}">
+                            <h3>${colleague.name}</h3>
+                            <a href="${colleague.github}">GitHub</a>
+                        </div>
+                    `;
                 });
             } catch (error) {
-                console.error('Erro ao buscar imagens do JSON Server:', error);
+                console.error('Erro ao carregar dados:', error);
             }
-        }
-
-        // Chamar a função para buscar e exibir imagens ao carregar a página
-        fetchAndDisplayImages();
+        });
     </script>
-
-    <!-- Fim do documento HTML -->
 </body>
 </html>
